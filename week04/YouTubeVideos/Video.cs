@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 class Video
 {
@@ -8,7 +9,7 @@ class Video
       private string _author;
       private int _length;
 
-      private static int suffix = 1100;
+      private int suffix = 1100;
       private string currentVideoId = "";
 
 
@@ -17,6 +18,7 @@ class Video
     {
         // increment
         suffix += 1;
+        Console.WriteLine($"The current suffix is: {suffix}");
         string videoId = "VD" + suffix.ToString();
         return videoId;
     }
