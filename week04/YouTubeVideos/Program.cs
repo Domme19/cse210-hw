@@ -47,7 +47,7 @@ class Program
             Console.WriteLine($"Length - {currentVideo.GetLength()}");
             Console.WriteLine($"Number of Comments - {currentVideo.GetCommentCount()}"); 
             Console.WriteLine("-------Comments-------------------------"); 
-            currentVideo.viewComments(); 
+            currentVideo.ViewComments(); 
 
         }
 

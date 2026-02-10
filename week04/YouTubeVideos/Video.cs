@@ -78,7 +78,7 @@ class Video
     }
 
 
-    public void viewComments()
+    public void ViewComments()
     {
         for (int i = 0; i < _comments.Count; i++)
         {
