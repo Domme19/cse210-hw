@@ -36,14 +36,11 @@ class Program
         Address customer2Address = new Address(10, "Downing Street", "London", "Greater London", "UK");
         Customer secondCustomer = new Customer("John", "Kent", customer2Address);
         Order secondOrder = new Order(secondCustomer, productList2);
-
          // Shipping Label
         Console.WriteLine("------Shipping Label-------"); 
         Console.WriteLine(secondOrder.GetShippingLabel()); 
-        // Packing Label
         Console.WriteLine("------Packing Label-------"); 
         Console.WriteLine(secondOrder.GetPackingLabel()); 
-        // Total Cost:
         Console.WriteLine($"Total Cost: ${secondOrder.CalculateTotalCost()}"); 
 
     }
