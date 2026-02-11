@@ -1,5 +1,7 @@
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Dynamic;
+using System.Runtime.ExceptionServices;
 using System.Transactions;
 
 class Order
@@ -12,16 +14,6 @@ class Order
         _customer = customer;
         _products = products;
     }
-
-    public void viewListOfProduct()
-    {
-        for (int i = 0; i < _products.Count; i++)
-        {
-            Product currentProduct = _products[i]; 
-            Console.WriteLine($"{currentProduct.GetId()}, {currentProduct.GetName()}, {currentProduct.GetPrice()}, {currentProduct.GetQuantity()}"); 
-        }
-    }
-
 
     // calculate the total cost of the order
     public double CalculateTotalCost()
@@ -42,6 +34,28 @@ class Order
         }
 
         return allProductSum + shippingCost;
+    }
+
+    public string GetPackingLabel()
+    {
+        string packingLabel = ""; 
+        for (int i = 0; i < _products.Count; i++)
+        {
+            Product currentProduct = _products[i];
+            string label = $"{currentProduct.GetName()} - {currentProduct.GetId()}";
+            packingLabel += label;
+            if (i != _products.Count - 1)
+            {
+                packingLabel += "\n"; 
+            }
+
+        }
+        return packingLabel;
+    }
+
+    public string GetShippingLabel()
+    {
+        return $"{_customer.GetFirstName()}, {_customer.GetLastName()} - {_customer.GetFullAddress()}"; 
     }
     
 }
