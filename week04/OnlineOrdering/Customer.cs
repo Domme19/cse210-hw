@@ -29,7 +29,12 @@ class Customer
         return _lastName;
     }
 
-    public string GetAddress()
+    public Address GetAddress()
+    {
+        return _address;
+    }
+
+    public string GetFullAddress()
     {
         return _address.FullAddress(); 
     }

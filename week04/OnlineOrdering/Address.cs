@@ -20,37 +20,37 @@ class Address
     }
 
 
-    // public int GetStreetNo()
-    // {
-    //     return _streetNo;
-    // }
+    public int GetStreetNo()
+    {
+        return _streetNo;
+    }
 
 
 
-    // public string GetStreetName()
-    // {
-    //     return _streetName;
-    // }
+    public string GetStreetName()
+    {
+        return _streetName;
+    }
 
 
 
-    // public string GetCity()
-    // {
-    //     return _city;
-    // }
+    public string GetCity()
+    {
+        return _city;
+    }
 
 
 
-    // public string GetState()
-    // {
-    //     return _state;
-    // }
+    public string GetState()
+    {
+        return _state;
+    }
 
 
-    // public string GetCountry()
-    // {
-    //     return _country;
-    // }
+    public string GetCountry()
+    {
+        return _country;
+    }
 
     public bool IsAddressInUsa()
     {

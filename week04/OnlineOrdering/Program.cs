@@ -1,6 +1,7 @@
 using System;
 using System.Dynamic;
 using System.Net.Http.Headers;
+using System.Numerics;
 
 class Program
 {
@@ -24,18 +25,20 @@ class Program
 
 
         // Testing customer class
-        Product laptop = new Product("ZenBook 14", "LAP-001X", 999.99, 15);
-        Product shoes = new Product("CloudRunner Sneaker", "SH-9921", 125.00, 40);
-        Product lamp = new Product("Minimalist Desk Lamp", "HOME-LMP-04", 45.75, 8);
+        Product laptop = new Product("ZenBook 14", "LAP-001X", 999.99, 1);
+        Product shoes = new Product("CloudRunner Sneaker", "SH-9921", 125.00, 1);
+        Product lamp = new Product("Minimalist Desk Lamp", "HOME-LMP-04", 45.75, 1);
         List <Product> productList = [laptop, shoes, lamp];
 
-        Address customerAddress = new Address(742, "Evergreen Terrace", "Springfield", "IL", "USA");
+        Address customerAddress = new Address(742, "Evergreen Terrace", "Springfield", "IL", "UK");
         Customer newCustomer = new Customer("Homer", "Simpson", customerAddress);
-        Console.WriteLine($"{newCustomer.GetFirstName()}, {newCustomer.GetLastName()} @ {newCustomer.GetAddress()}");
+        // Console.WriteLine($"{newCustomer.GetFirstName()}, {newCustomer.GetLastName()} @ {newCustomer.GetFullAddress()}");
 
         // Order products
         Order newOrder = new Order(newCustomer, productList);
-        newOrder.viewListOfProduct(); 
+        newOrder.viewListOfProduct();
+        double totalCost = newOrder.CalculateTotalCost();
+        Console.WriteLine($"The Total Cost is: {totalCost}"); 
 
 
     }

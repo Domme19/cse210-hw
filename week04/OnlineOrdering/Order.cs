@@ -21,5 +21,27 @@ class Order
             Console.WriteLine($"{currentProduct.GetId()}, {currentProduct.GetName()}, {currentProduct.GetPrice()}, {currentProduct.GetQuantity()}"); 
         }
     }
+
+
+    // calculate the total cost of the order
+    public double CalculateTotalCost()
+    {
+        int shippingCost = 5;
+        double allProductSum = 0; 
+        // to check if the customer is from USA
+        if (!_customer.GetAddress().IsAddressInUsa())
+        {
+            shippingCost = 35;
+        }
+
+        for (int i = 0; i < _products.Count; i++)
+        {
+            Product currentProduct = _products[i];
+            double totalOfEachProduct = currentProduct.GetTotalPrice();
+            allProductSum += totalOfEachProduct;
+        }
+
+        return allProductSum + shippingCost;
+    }
     
 }
