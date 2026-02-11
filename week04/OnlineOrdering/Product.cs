@@ -16,7 +16,6 @@ class Product
     }
 
 
-
     // getters
     public string GetName()
     {
@@ -40,5 +39,10 @@ class Product
     public double GetPrice()
     {
         return _price;
+    }
+
+    public double GetTotalPrice()
+    {
+        return _quantity * _price;
     }
 }

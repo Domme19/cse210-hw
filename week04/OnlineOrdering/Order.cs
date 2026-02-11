@@ -1,6 +1,25 @@
+using System.ComponentModel.Design;
+using System.Dynamic;
+using System.Transactions;
+
 class Order
 {
     private List<Product> _products;
     private Customer _customer;
+
+    public Order(Customer customer, List<Product> products)
+    {
+        _customer = customer;
+        _products = products;
+    }
+
+    public void viewListOfProduct()
+    {
+        for (int i = 0; i < _products.Count; i++)
+        {
+            Product currentProduct = _products[i]; 
+            Console.WriteLine($"{currentProduct.GetId()}, {currentProduct.GetName()}, {currentProduct.GetPrice()}, {currentProduct.GetQuantity()}"); 
+        }
+    }
     
 }
