@@ -1,10 +1,26 @@
 using System;
+using System.Dynamic;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the OnlineOrdering Project.");
-        Console.WriteLine("We are going to build an Online Ordering System."); 
+        // Test products
+        Product laptop = new Product("ZenBook 14", "LAP-001X", 999.99, 15);
+        Product shoes = new Product("CloudRunner Sneaker", "SH-9921", 125.00, 40);
+        Product lamp = new Product("Minimalist Desk Lamp", "HOME-LMP-04", 45.75, 8);
+        Product coffee = new Product("Ethiopian Roast", "GRO-552", 18.50, 142);
+
+        Console.WriteLine($"The product is: Id: {laptop.GetId()} {laptop.GetName()}   {laptop.GetPrice()} {laptop.GetQuantity()}");
+
+
+        // Testing Address
+        Address home = new Address(123, "Maple Avenue", "Springfield", "Illinois", "USA");
+        Address londonOffice = new Address(10, "Downing Street", "London", "Greater London", "UK");
+        Address techHub = new Address(1600, "Amphitheatre Parkway", "Mountain View", "California", "USA");
+
+        Console.WriteLine($"Address: {home.FullAddress()}"); 
+
+
     }
 }
