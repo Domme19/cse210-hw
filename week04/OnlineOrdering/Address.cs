@@ -1,3 +1,6 @@
+using System.ComponentModel;
+using System.Linq.Expressions;
+
 class Address
 {
     private int _streetNo;
@@ -17,39 +20,44 @@ class Address
     }
 
 
-    public int GetStreetNo()
+    // public int GetStreetNo()
+    // {
+    //     return _streetNo;
+    // }
+
+
+
+    // public string GetStreetName()
+    // {
+    //     return _streetName;
+    // }
+
+
+
+    // public string GetCity()
+    // {
+    //     return _city;
+    // }
+
+
+
+    // public string GetState()
+    // {
+    //     return _state;
+    // }
+
+
+    // public string GetCountry()
+    // {
+    //     return _country;
+    // }
+
+    public bool IsAddressInUsa()
     {
-        return _streetNo;
+        string trimmedCountryField = _country.Trim().ToLower(); 
+        return trimmedCountryField == "usa" || trimmedCountryField == "us"; 
+
     }
-
-
-
-    public string GetStreetName()
-    {
-        return _streetName;
-    }
-
-
-
-    public string GetCity()
-    {
-        return _city;
-    }
-
-
-
-    public string GetState()
-    {
-        return _state;
-    }
-
-
-    public string GetCountry()
-    {
-        return _country;
-    }
-
-
     public string FullAddress()
     {
         return $"{_streetNo} {_streetName}, {_city}, {_state}, {_country}"; 

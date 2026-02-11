@@ -1,5 +1,37 @@
+using System.Dynamic;
+using System.Runtime.ExceptionServices;
+using System.Security.Cryptography.X509Certificates;
+
 class Customer
 {
     // attributes
-    private string _name;
+    private string _firstName;
+    private string _lastName;
+    private Address _address;
+
+
+    public Customer(string firstName, string lastName, Address address)
+    {
+        _firstName = firstName;
+        _lastName = lastName;
+        _address = address;
+    }
+
+
+    public string GetFirstName()
+    {
+        return _firstName;
+    }
+
+
+    public string GetLastName()
+    {
+        return _lastName;
+    }
+
+    public string GetAddress()
+    {
+        return _address.FullAddress(); 
+    }
+
 }
