@@ -32,21 +32,13 @@ class Program
         const int ReflectingChoice = 2; 
         const int ListingChoice = 3;
         const int QuitChoice = 4; 
-        const string BreathingName = "Breathing Activity"; 
+
+        const string BreathingName = "Breathing"; 
         const string BreathingDesc = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
-        const int BreathingDuration = 10;
-        
-        const string ReflectingName = "Reflecting Activity";
+        const string ReflectingName = "Reflecting";
         const string ReflectingDesc = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
-        const int ReflectingDuration = 20;
-
-        const string ListingName = "Listing Activity"; 
+        const string ListingName = "Listing"; 
         const string ListingDesc = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area."; 
-        const int ListingDuration = 30; 
-
-
-
-        
         // TODO: Build a Menu for testing Purpose for now
 
       
@@ -61,15 +53,16 @@ class Program
             switch (choice)
             {
                 case BreathingChoice:
-                    Activity breathing = new Activity(BreathingName, BreathingDesc, BreathingDuration); 
+                    BreathingActivity breathing = new BreathingActivity(BreathingName, BreathingDesc, 0); 
                     breathing.DisplayStartingMessage();
+                    Console.WriteLine($"The duration is: {breathing.GetDuration()}"); 
                     break;
                 case ReflectingChoice: 
-                    Activity reflecting = new Activity(ReflectingName, ReflectingDesc, ReflectingDuration); 
+                    Activity reflecting = new Activity(ReflectingName, ReflectingDesc, 0); 
                     reflecting.DisplayStartingMessage(); 
                     break;
                 case ListingChoice:
-                    Activity listing = new Activity(ListingName, ListingDesc, ListingDuration);
+                    Activity listing = new Activity(ListingName, ListingDesc, 0);
                     listing.DisplayStartingMessage(); 
                     break;
                 case QuitChoice:
