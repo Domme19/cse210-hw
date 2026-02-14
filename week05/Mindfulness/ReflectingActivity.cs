@@ -76,8 +76,10 @@ public class ReflectingActivity : Activity
 
         Console.WriteLine(); 
         Console.WriteLine("Well Done!!");
+        ShowSpinner(2);
         Console.WriteLine(); 
         DisplayEndingMessage(); 
+        ShowSpinner(3);
 
     }
 

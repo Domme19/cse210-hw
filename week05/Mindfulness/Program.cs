@@ -87,8 +87,18 @@ class Program
                     reflecting.Run(); 
                     break;
                 case ListingChoice:
-                    Activity listing = new Activity(ListingName, ListingDesc, 0);
+                // some work
+                     List<string> listingPrompts = ["Who are people that you appreciate?",
+                                                    "What are personal strengths of yours?",
+                                                    "Who are people that you have helped this week?",
+                                                    "When have you felt the Holy Ghost this month?",
+                                                    "Who are some of your personal heroes"
+                                                    ];
+
+                    ListingActivity listing = new ListingActivity(ListingName, ListingDesc, 0, 0, listingPrompts);
                     listing.DisplayStartingMessage(); 
+                    listing.ShowSpinner(listing.GetDuration()); 
+                    listing.Run(); 
                     break;
                 case QuitChoice:
                     hasStopped = true; 
