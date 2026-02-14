@@ -31,6 +31,9 @@ public class Activity
 
     public void DisplayStartingMessage()
     {
-        
+        // building display starting Message
+       Console.WriteLine($"Welcome to the {_name}.");
+       Console.WriteLine();
+       Console.WriteLine(_description); 
     }
 }

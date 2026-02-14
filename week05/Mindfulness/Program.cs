@@ -1,5 +1,7 @@
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
 using System.Security.Authentication.ExtendedProtection;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -30,10 +32,27 @@ class Program
         const int ReflectingChoice = 2; 
         const int ListingChoice = 3;
         const int QuitChoice = 4; 
-        bool hasStopped = false; 
+        const string BreathingName = "Breathing Activity"; 
+        const string BreathingDesc = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
+        const int BreathingDuration = 10;
+        
+        const string ReflectingName = "Reflecting Activity";
+        const string ReflectingDesc = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
+        const int ReflectingDuration = 20;
+
+        const string ListingName = "Listing Activity"; 
+        const string ListingDesc = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area."; 
+        const int ListingDuration = 30; 
+
+
+
+        
         // TODO: Build a Menu for testing Purpose for now
+
+      
+        bool hasStopped = false; 
        
-       
+
         while (!hasStopped)
         {
             DisplayMenu();
@@ -42,25 +61,22 @@ class Program
             switch (choice)
             {
                 case BreathingChoice:
-                    // clear console
-                    // Console.Clear(); 
-                    Console.WriteLine($"You have picked {choice}: the breathing Activity"); 
+                    Activity breathing = new Activity(BreathingName, BreathingDesc, BreathingDuration); 
+                    breathing.DisplayStartingMessage();
                     break;
                 case ReflectingChoice: 
-                    // Console.Clear(); 
-                    Console.WriteLine($"You have picked {choice}: the Reflecting Activity"); 
+                    Activity reflecting = new Activity(ReflectingName, ReflectingDesc, ReflectingDuration); 
+                    reflecting.DisplayStartingMessage(); 
                     break;
                 case ListingChoice:
-                    // Console.Clear(); 
-                    Console.WriteLine($"You have picked {choice}: the Listing Activity"); 
+                    Activity listing = new Activity(ListingName, ListingDesc, ListingDuration);
+                    listing.DisplayStartingMessage(); 
                     break;
                 case QuitChoice:
-                    // Console.Clear();
                     hasStopped = true; 
                     Console.WriteLine($"You have terminated the program"); 
                     break;
-                default:
-                    // Console.Clear(); 
+                default: 
                     Console.WriteLine("Invalid choice"); 
                     break;
             }
