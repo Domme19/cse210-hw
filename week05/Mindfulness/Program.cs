@@ -56,7 +56,9 @@ class Program
                     BreathingActivity breathing = new BreathingActivity(BreathingName, BreathingDesc, 0); 
                     breathing.DisplayStartingMessage();
                     breathing.ShowSpinner(breathing.GetDuration()); 
-                    // Console.WriteLine($"The duration is: {breathing.GetDuration()}"); 
+                    breathing.Run(); 
+                    breathing.ShowSpinner(2); 
+                    breathing.DisplayEndingMessage(); 
                     break;
                 case ReflectingChoice: 
                     Activity reflecting = new Activity(ReflectingName, ReflectingDesc, 0); 
