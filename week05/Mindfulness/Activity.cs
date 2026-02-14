@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
 
 public class Activity
@@ -26,5 +27,10 @@ public class Activity
     public int GetDuration()
     {
         return _duration;
+    }
+
+    public void DisplayStartingMessage()
+    {
+        
     }
 }
