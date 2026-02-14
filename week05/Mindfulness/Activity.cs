@@ -59,4 +59,39 @@ public class Activity
     {
         //TODO:
     }
+
+
+    public void ShowSpinner(int seconds)
+    {
+
+        // List of all animation
+        List<string> animationStrings = new List<string>(); 
+        animationStrings.Add("|");
+        animationStrings.Add("/");
+        animationStrings.Add("-");
+        animationStrings.Add("\\");
+        animationStrings.Add("|");
+        animationStrings.Add("/");
+        animationStrings.Add("-");
+        animationStrings.Add("\\");
+        // TODO: 
+        Console.WriteLine("Get ready..."); 
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(seconds);
+        int i = 0; 
+        while (DateTime.Now < endTime)
+        {
+            Console.Write(animationStrings[i]);
+            Thread.Sleep(500);
+            Console.Write("\b \b");
+
+            i++;
+            
+            if (i >= animationStrings.Count)
+            {
+                i = 0; 
+            }
+
+        }
+    }
 }
