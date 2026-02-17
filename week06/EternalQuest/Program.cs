@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 class Program
 {
@@ -23,12 +24,52 @@ class Program
         Console.WriteLine("5. Record Event");
         Console.WriteLine("6. Quit");
     }
+
+    public static void DisplayGoalTypes()
+    {
+        Console.WriteLine("The types of Goals are: ");
+        Console.WriteLine("1. Simple Goal");
+        Console.WriteLine("2. Eternal Goal");
+        Console.WriteLine("3. Checklist Goal"); 
+    }
+
+    public static void GoalSelectSwitch()
+    {
+        const int SimpleGoal = 1;
+        const int EternalGoal = 2;
+        const int ChecklistGoal = 3;
+        Console.Write("Which type of goal would you like to create? ");
+        int goalChoice = int.Parse(Console.ReadLine());
+
+        switch (goalChoice)
+        {
+            case SimpleGoal:
+                Console.WriteLine("You created a simple Goal");
+                Console.WriteLine("In progress");
+            break;
+
+            case EternalGoal:
+                Console.WriteLine("You created an Eternal Goal");
+                Console.WriteLine("In progress");
+
+            break;
+
+            case ChecklistGoal:
+                Console.WriteLine("You created a checklist goal");
+                Console.WriteLine("In progress");
+            break;
+
+            default: 
+                Console.WriteLine("Invalid choice"); 
+            break;
+        }
+    }
     static void Main(string[] args)
     {
        
     //    Display Main menu
         DisplayMainMenu();
-        
+
         // receive input to select menu 
         Console.Write("Select a choice from the menu: ");
         int choice = int.Parse(Console.ReadLine());
@@ -36,8 +77,9 @@ class Program
         switch (choice)
         {
             case CreateNewGoal:
-                Console.WriteLine("Create new Goal");
-                Console.WriteLine("in progress");
+            // display type of goals
+                DisplayGoalTypes();
+                GoalSelectSwitch();      
             break;
 
             case ListGoals:
