@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 public class Goal
 {
     private string _shortName;
@@ -9,5 +11,29 @@ public class Goal
         _shortName = shortName;
         _description = description;
         _points = points;
+    }
+
+
+    public void RecordEvent()
+    {
+        //TODO
+    }
+
+    public bool IsCompleted()
+    {
+        // TODO
+        return false;
+    }
+
+    public string GetDetailsString()
+    {
+        // TODO
+        return "";
+    }
+
+    public string GetStringRepresentation()
+    {
+        //TODO
+        return "";
     }
 }
