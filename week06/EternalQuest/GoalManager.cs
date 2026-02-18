@@ -1,14 +1,24 @@
+using System.Diagnostics;
+using System.Drawing;
+using System.Security;
+
 public class GoalManager
 {
-    private List<Goal> _goals;
+    private List<Goal> _goals = new List<Goal>();
     private int _score;
 
-     private const int CreateNewGoal = 1;
+    private const int CreateNewGoal = 1;
     private  const int ListGoals = 2;
     private  const int SaveGoals = 3;
     private  const int LoadGoals = 4;
     private  const int RecordEvent = 5;
     private  const int Quit = 6;
+
+
+    // goal select constant
+    private  const int SimpleGoal = 1;
+    private  const int EternalGoal = 2;
+    private  const int ChecklistGoal = 3;
 
     public GoalManager()
     {
@@ -41,44 +51,91 @@ public class GoalManager
     }
 
 
-    private static void GoalSelectSwitch()
+    public void CreateGoal()
     {
-        const int SimpleGoal = 1;
-        const int EternalGoal = 2;
-        const int ChecklistGoal = 3;
+        // initialized variables;
+        string goalName = "";
+        string goalDescription = "";
+        int points = 0;
+
         Console.Write("Which type of goal would you like to create? ");
         int goalChoice = int.Parse(Console.ReadLine());
 
-        switch (goalChoice)
+        // TODO: create Goal
+         switch (goalChoice)
         {
             case SimpleGoal:
-                Console.WriteLine("You created a simple Goal");
-                Console.WriteLine("In progress");
+                Console.Write("What is the name of your Goal? ");
+                goalName = Console.ReadLine(); 
+                Console.WriteLine(""); 
+                Console.Write("What is a short description of it? ");
+                goalDescription = Console.ReadLine(); 
+                Console.Write("\n"); 
+                Console.Write("What is the amount of points associated with this goal? ");
+                points = int.Parse(Console.ReadLine()); 
+
+                // adding a goal to the 
+                SimpleGoal newSimpleGoal = new SimpleGoal(goalName, goalDescription, points); 
+                _goals.Add(newSimpleGoal); 
             break;
 
             case EternalGoal:
-                Console.WriteLine("You created an Eternal Goal");
-                Console.WriteLine("In progress");
+                Console.Write("What is the name of your Goal? ");
+                goalName = Console.ReadLine(); 
+                Console.WriteLine(); 
+                Console.Write("What is a short description of it? ");
+                goalDescription = Console.ReadLine(); 
+                Console.Write("\n"); 
+                Console.Write("What is the amount of points associated with this goal? ");
+                points = int.Parse(Console.ReadLine()); 
 
+                // adding goals
+                EternalGoal newEternalGoal = new EternalGoal(goalName, goalDescription, points);
+                _goals.Add(newEternalGoal); 
             break;
 
             case ChecklistGoal:
-                Console.WriteLine("You created a checklist goal");
-                Console.WriteLine("In progress");
+                Console.Write("What is the name of your Goal? ");
+                goalName = Console.ReadLine(); 
+                Console.WriteLine(""); 
+                Console.Write("What is a short description of it? ");
+                goalDescription = Console.ReadLine(); 
+                Console.Write("\n"); 
+                Console.Write("What is the amount of points associated with this goal? ");
+                points = int.Parse(Console.ReadLine()); 
+                Console.Write("\n"); 
+                Console.Write("How many times does this goal need to be accomplished for a bonus? "); 
+                int target = int.Parse(Console.ReadLine());
+                Console.WriteLine("");
+                Console.Write("What is the bonus for accomplishing it that many times? ");
+                int bonus = int.Parse(Console.ReadLine()); 
+
+                // adding goal
+                ChecklistGoal newChecklistGoal = new ChecklistGoal(goalName, goalDescription, points, target, bonus);
+                _goals.Add(newChecklistGoal); 
             break;
 
             default: 
                 Console.WriteLine("Invalid choice"); 
             break;
         }
+        
+      
     }
+
+
+    public void ListGoalNames()
+    {
+        // TODO
+        Console.WriteLine("The goals are: ");
+    }
+
+
 
     public void Start()
     {
-        //    Display Main menu
         DisplayMainMenu();
 
-        // receive input to select menu 
         Console.Write("Select a choice from the menu: ");
         int choice = int.Parse(Console.ReadLine());
 
@@ -87,7 +144,9 @@ public class GoalManager
             case CreateNewGoal:
             // display type of goals
                 DisplayGoalTypes();
-                GoalSelectSwitch();      
+                // Console.Write("Which type of goal would you like to create? ");
+                // int goalChoice = int.Parse(Console.ReadLine());     
+                CreateGoal();
             break;
 
             case ListGoals:
@@ -124,8 +183,5 @@ public class GoalManager
     
 
 
-    public void CreateGoal()
-    {
-        // TODO: create Goal
-    }
+   
 }
