@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Security;
 using System.Transactions;
@@ -147,11 +148,60 @@ public class GoalManager
         {
             for (int i = 0; i < _goals.Count; i++)
             {
+                if (i == 0)
+                {
+                    sw.WriteLine(_score); 
+                }
                 Goal currentGoal = _goals[i];
-                sw.WriteLine(currentGoal.GetDetailsString()); 
+                sw.WriteLine(currentGoal.GetStringRepresentation()); 
             }
         }
     }
+
+    // public void LoadGoals()
+    // {
+    //     const string simpleGoalName = "SimpleGoal";
+    //     const string eternalGoalName = "EternalGoal";
+    //     const string checkListGoalName = "ChecklistGoal"; 
+
+    //     Console.WriteLine("What is the filename for the goal file? ");
+    //     string path = Console.ReadLine(); 
+    //     int k = 0;
+        
+    //     if (File.Exists(path))
+    //     {
+    //         foreach(string line in File.ReadLines(path))
+    //         {
+    //             if (k == 0)
+    //             {
+    //                 _score = int.Parse(line.Trim()); 
+    //             }
+
+    //             string[] mainParts = line.Split(":");
+    //             string goalType = mainParts[0];
+    //             string [] goalData = mainParts[1].Split(",");
+    //             if (goalType == simpleGoalName)
+    //             {
+    //                 string name = goalData[0];
+    //                 string description = goalData[1];
+    //                 int points = int.Parse(goalData[2].Trim());
+    //                 bool 
+    //                 SimpleGoal newGoal = new SimpleGoal()
+    //             }
+    //             else if (goalType == eternalGoalName)
+    //             {
+
+    //             }
+    //             else
+    //             {
+                    
+    //             }
+
+    //             k++;
+    //         }
+    //     }
+
+    // }
     public void Start()
     {
         bool hasStopped = false;
@@ -176,8 +226,7 @@ public class GoalManager
                 break;
 
                 case SaveGoalsChoice:
-                    Console.WriteLine("Save Goals");
-                    Console.WriteLine("In progress");
+                    SaveGoals(); 
                 break;
 
                 case LoadGoalsChoice:
