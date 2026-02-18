@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Runtime;
 using System.Threading.Channels;
 
 public class ChecklistGoal : Goal
@@ -33,7 +34,8 @@ public class ChecklistGoal : Goal
     public override string GetDetailsString()
     {
         // TODO
-        return "in progress";
+        string formattedString = $"[ ] {_shortName} ({_description}) -- Currently Completed: {_amountCompleted}/{_target}"; 
+        return formattedString; 
     }
 
     public override string GetStringRepresentation()

@@ -20,7 +20,8 @@ public class EternalGoal : Goal
     public override string GetDetailsString()
     {
         // TODO
-        return "in progress";
+        string formattedString = $"[ ] {_shortName} ({_description})"; 
+        return formattedString;
     }
 
     public override string GetStringRepresentation()
