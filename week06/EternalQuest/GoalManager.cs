@@ -8,4 +8,10 @@ public class GoalManager
         _goals = goals;
         _score = score; 
     }
+
+
+    public void CreateGoal()
+    {
+        // TODO: create Goal
+    }
 }

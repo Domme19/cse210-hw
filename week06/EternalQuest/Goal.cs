@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-public class Goal
+public abstract class Goal
 {
     private string _shortName;
     private string _description;
@@ -14,26 +14,12 @@ public class Goal
     }
 
 
-    public void RecordEvent()
-    {
-        //TODO
-    }
+    public abstract void RecordEvent(); 
 
-    public bool IsCompleted()
-    {
-        // TODO
-        return false;
-    }
+    public abstract bool IsCompleted();
 
-    public string GetDetailsString()
-    {
-        // TODO
-        return "";
-    }
 
-    public string GetStringRepresentation()
-    {
-        //TODO
-        return "";
-    }
+    public abstract string GetDetailsString();
+
+    public  abstract string GetStringRepresentation();
 }
