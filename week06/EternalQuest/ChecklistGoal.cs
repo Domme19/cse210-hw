@@ -40,7 +40,7 @@ public class ChecklistGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        // TODO: 
-        return "in progress"; 
+        // TODO:
+         return $"ChecklistGoal:{_shortName}, {_description}, {_points}, {_bonus}, {_target}, {_amountCompleted}"; 
     }
 }

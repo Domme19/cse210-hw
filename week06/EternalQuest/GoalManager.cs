@@ -1,18 +1,20 @@
 using System.Diagnostics;
 using System.Drawing;
+using System.Runtime.Versioning;
 using System.Security;
+using System.Transactions;
 
 public class GoalManager
 {
     private List<Goal> _goals = new List<Goal>();
     private int _score;
 
-    private const int CreateNewGoal = 1;
-    private  const int ListGoals = 2;
-    private  const int SaveGoals = 3;
-    private  const int LoadGoals = 4;
-    private  const int RecordEvent = 5;
-    private  const int Quit = 6;
+    private const int CreateNewGoalChoice = 1;
+    private  const int ListGoalsChoice = 2;
+    private  const int SaveGoalsChoice = 3;
+    private  const int LoadGoalsChoice = 4;
+    private  const int RecordEventChoice = 5;
+    private  const int QuitChoice = 6;
 
 
     // goal select constant
@@ -128,58 +130,80 @@ public class GoalManager
     {
         // TODO
         Console.WriteLine("The goals are: ");
-    }
-
-
-
-    public void Start()
-    {
-        DisplayMainMenu();
-
-        Console.Write("Select a choice from the menu: ");
-        int choice = int.Parse(Console.ReadLine());
-
-        switch (choice)
+        for (int i = 0; i < _goals.Count; i++)
         {
-            case CreateNewGoal:
-            // display type of goals
-                DisplayGoalTypes();
-                // Console.Write("Which type of goal would you like to create? ");
-                // int goalChoice = int.Parse(Console.ReadLine());     
-                CreateGoal();
-            break;
-
-            case ListGoals:
-                Console.WriteLine("List goals");
-                Console.WriteLine("In progress");
-            break;
-
-            case SaveGoals:
-                Console.WriteLine("Save Goals");
-                Console.WriteLine("In progress");
-            break;
-
-            case LoadGoals:
-                Console.WriteLine("Load Goals");
-                Console.WriteLine("In progress");
-            break;
-
-            case RecordEvent:
-                Console.WriteLine("Record Event");
-                Console.WriteLine("In progress");
-            break;
-
-            case Quit:
-                Console.WriteLine("You have terminated the program.");
-            break;
-
-            default:
-                Console.WriteLine("Invalid choice");
-            break;
-
-
+            Goal currentGoal = _goals[i]; 
+            Console.WriteLine($"{i + 1}. {currentGoal.GetDetailsString()}");
         }
     }
+    
+
+    public void SaveGoals()
+    {
+        Console.Write("What is the filename for the goal file? ");
+        string goalFileName = Console.ReadLine();
+        // SOME VALIDATION HERE
+        using (StreamWriter sw = new StreamWriter(goalFileName))
+        {
+            for (int i = 0; i < _goals.Count; i++)
+            {
+                Goal currentGoal = _goals[i];
+                sw.WriteLine(currentGoal.GetDetailsString()); 
+            }
+        }
+    }
+    public void Start()
+    {
+        bool hasStopped = false;
+
+        while (!hasStopped)
+        {
+            DisplayMainMenu();
+
+            Console.Write("Select a choice from the menu: ");
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case CreateNewGoalChoice:
+                // display type of goals
+                    DisplayGoalTypes(); 
+                    CreateGoal();
+                break;
+
+                case ListGoalsChoice:
+                    ListGoalNames(); 
+                break;
+
+                case SaveGoalsChoice:
+                    Console.WriteLine("Save Goals");
+                    Console.WriteLine("In progress");
+                break;
+
+                case LoadGoalsChoice:
+                    Console.WriteLine("Load Goals");
+                    Console.WriteLine("In progress");
+                break;
+
+                case RecordEventChoice:
+                    Console.WriteLine("Record Event");
+                    Console.WriteLine("In progress");
+                break;
+
+                case QuitChoice:
+                    Console.WriteLine("You have terminated the program.");
+                    hasStopped = true;
+                break;
+
+                default:
+                    Console.WriteLine("Invalid choice");
+                break;
+
+
+            }
+        }
+    }
+       
     
 
 

@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Runtime.CompilerServices;
 
 public class SimpleGoal: Goal
@@ -30,6 +31,6 @@ public class SimpleGoal: Goal
     public override string GetStringRepresentation()
     {
         // TODO: 
-        return "in progress"; 
+        return $"SimpleGoal:{_shortName}, {_description}, {_points}, {_isComplete}"; 
     }
 }

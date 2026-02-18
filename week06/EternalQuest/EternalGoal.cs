@@ -26,7 +26,7 @@ public class EternalGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        // TODO: 
-        return "in progress"; 
+        // TODO:
+        return $"EternalGoal:{_shortName}, {_description}, {_points}"; 
     }
 }
