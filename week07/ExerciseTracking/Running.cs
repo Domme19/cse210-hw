@@ -2,7 +2,7 @@ using System.Diagnostics.Contracts;
 
 public class Running : Activity
 {
-    private double _distance; // In miles
+    private double _distance;
 
     public Running(string date, int minutes, double distance) : base(date, minutes)
     {
