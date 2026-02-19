@@ -6,9 +6,28 @@ public class EternalGoal : Goal
     }
 
 
+    // GETTERS
+    public override int GetPoints()
+    {
+        return _points;
+    }
+
+    public override int GetBonus()
+    {
+        return 0; 
+    }
+
+
+    public override int GetAmountCompleted()
+    {
+        return 0; 
+    }
+
+
+
      public override void RecordEvent()
     {
-        // TODO: 
+        // TODO: Nothing to do
     }
 
     public override bool IsCompleted()
@@ -20,7 +39,7 @@ public class EternalGoal : Goal
     public override string GetDetailsString()
     {
         // TODO
-        string formattedString = $"[ ] {_shortName} ({_description})"; 
+        string formattedString = $"[] {_shortName} ({_description})"; 
         return formattedString;
     }
 

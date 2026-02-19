@@ -1,5 +1,7 @@
 using System.Drawing;
+using System.Dynamic;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 
 public class SimpleGoal: Goal
 {
@@ -10,22 +12,42 @@ public class SimpleGoal: Goal
     }
 
 
-    public override void RecordEvent()
+    public override int GetBonus()
     {
-        // TODO: 
+        return 0; 
     }
-
     public override bool IsCompleted()
     {
     //    TODO
-        return false;
+        return _isComplete;
+    }
+
+    public override int GetAmountCompleted()
+    {
+        return 0; 
+    }
+
+    public override void RecordEvent()
+    {
+        // TODO: 
+        _isComplete = true;
+    }
+
+
+    // Getters
+    public override int GetPoints()
+    {
+        return _points;
     }
 
     public override string GetDetailsString()
     {
         // TODO
-        string formattedString = $"[ ] {_shortName} ({_description})"; 
-        return formattedString; 
+        if (_isComplete)
+        {
+            return $"[X] {_shortName} ({_description})"; 
+        }
+        return  $"[] {_shortName} ({_description})"; 
     }
 
     public override string GetStringRepresentation()

@@ -17,25 +17,50 @@ public class ChecklistGoal : Goal
         _bonus = bonus;
     }
 
-
-
-     
-    public override void RecordEvent()
+    
+    // Getters
+    public override int GetPoints()
     {
-        // TODO: 
+        return _points;
     }
 
+    public override int GetBonus()
+    {
+        return _bonus; 
+    }
+
+    public override int GetAmountCompleted()
+    {
+        return _amountCompleted; 
+    }
+     
     public override bool IsCompleted()
     {
     //    TODO
-        return false;
+        if (_amountCompleted < _target)
+        {
+            _isComplete = false;
+            return _isComplete;
+        }
+        _isComplete = true;
+        return _isComplete;
     }
+
+
+    public override void RecordEvent()
+    {
+        _amountCompleted += 1;
+    }
+   
 
     public override string GetDetailsString()
     {
         // TODO
-        string formattedString = $"[ ] {_shortName} ({_description}) -- Currently Completed: {_amountCompleted}/{_target}"; 
-        return formattedString; 
+        if (IsCompleted())
+        {
+            return  $"[X] {_shortName} ({_description}) -- Currently Completed: {_amountCompleted}/{_target}"; 
+        }
+        return $"[] {_shortName} ({_description}) -- Currently Completed: {_amountCompleted}/{_target}";
     }
 
     public override string GetStringRepresentation()

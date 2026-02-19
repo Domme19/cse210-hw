@@ -1,4 +1,6 @@
+using System.Dynamic;
 using System.Runtime.CompilerServices;
+using System.Threading.Channels;
 
 public abstract class Goal
 {
@@ -13,6 +15,12 @@ public abstract class Goal
         _points = points;
     }
 
+
+    // getters
+    public abstract int GetPoints(); 
+    public abstract int GetBonus();
+    
+    public abstract int GetAmountCompleted(); 
 
     public abstract void RecordEvent(); 
 
