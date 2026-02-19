@@ -78,7 +78,7 @@ public class GoalManager
                 points = int.Parse(Console.ReadLine()); 
 
                 // adding a goal to the 
-                SimpleGoal newSimpleGoal = new SimpleGoal(goalName, goalDescription, points); 
+                SimpleGoal newSimpleGoal = new SimpleGoal(goalName, goalDescription, points, false); 
                 _goals.Add(newSimpleGoal); 
             break;
 
@@ -114,7 +114,8 @@ public class GoalManager
                 int bonus = int.Parse(Console.ReadLine()); 
 
                 // adding goal
-                ChecklistGoal newChecklistGoal = new ChecklistGoal(goalName, goalDescription, points, target, bonus);
+                int amountCompleted = 0; 
+                ChecklistGoal newChecklistGoal = new ChecklistGoal(goalName, goalDescription, points, target, bonus, amountCompleted);
                 _goals.Add(newChecklistGoal); 
             break;
 
@@ -158,50 +159,75 @@ public class GoalManager
         }
     }
 
-    // public void LoadGoals()
-    // {
-    //     const string simpleGoalName = "SimpleGoal";
-    //     const string eternalGoalName = "EternalGoal";
-    //     const string checkListGoalName = "ChecklistGoal"; 
+    public void LoadGoals()
+    {
+        const string simpleGoalName = "SimpleGoal";
+        const string eternalGoalName = "EternalGoal";
+        const string checkListGoalName = "ChecklistGoal"; 
 
-    //     Console.WriteLine("What is the filename for the goal file? ");
-    //     string path = Console.ReadLine(); 
-    //     int k = 0;
+        Console.Write("What is the filename for the goal file? ");
+        string path = Console.ReadLine(); 
+        int k = 0;
         
-    //     if (File.Exists(path))
-    //     {
-    //         foreach(string line in File.ReadLines(path))
-    //         {
-    //             if (k == 0)
-    //             {
-    //                 _score = int.Parse(line.Trim()); 
-    //             }
+        if (File.Exists(path))
+        {
+            foreach(string line in File.ReadLines(path))
+            {
 
-    //             string[] mainParts = line.Split(":");
-    //             string goalType = mainParts[0];
-    //             string [] goalData = mainParts[1].Split(",");
-    //             if (goalType == simpleGoalName)
-    //             {
-    //                 string name = goalData[0];
-    //                 string description = goalData[1];
-    //                 int points = int.Parse(goalData[2].Trim());
-    //                 bool 
-    //                 SimpleGoal newGoal = new SimpleGoal()
-    //             }
-    //             else if (goalType == eternalGoalName)
-    //             {
+                if (k == 0)
+                {
+                    _score = int.Parse(line);
+                    k++;
+                    continue; 
+                }
+                string[] mainParts = line.Split(":");
+                string goalType = mainParts[0].Trim();
+                string [] goalData = mainParts[1].Split(",");
 
-    //             }
-    //             else
-    //             {
+                if (goalType == simpleGoalName)
+                {
+                    string name = goalData[0].Trim();
+                    string description = goalData[1].Trim();
+                    int points = int.Parse(goalData[2].Trim());
+                    bool isComplete = false;
+                    if (goalData[3] == "False")
+                    {
+                        isComplete = false;
+                    }else if(goalData[3] == "True")
+                    {
+                        isComplete = true;
+                    }
+
+                    SimpleGoal newGoal = new SimpleGoal(name, description, points, isComplete);
+                    _goals.Add(newGoal); 
                     
-    //             }
+                }else if(goalType == eternalGoalName)
+                {
+                    string name = goalData[0].Trim();
+                    string description = goalData[1].Trim();
+                    int points = int.Parse(goalData[2].Trim());
+                    EternalGoal newGoal = new EternalGoal(name, description, points);
+                    _goals.Add(newGoal);
+                }
+                else if (goalType == checkListGoalName)
+                {
+                    string name = goalData[0].Trim();
+                    string description = goalData[1].Trim();
+                    int points = int.Parse(goalData[2].Trim());
+                    int bonus = int.Parse(goalData[3].Trim());
+                    int target = int.Parse(goalData[4].Trim());
+                    int amountCompleted = int.Parse(goalData[5].Trim()); 
+                    ChecklistGoal newGoal = new ChecklistGoal(name, description, points, bonus, target, amountCompleted);
+                    _goals.Add(newGoal);
+                }
 
-    //             k++;
-    //         }
-    //     }
+            }
+        }
 
-    // }
+        Console.WriteLine("Goals successfully loaded"); 
+        Console.WriteLine($"the goals list length is: {_goals.Count}"); 
+
+    }
     public void Start()
     {
         bool hasStopped = false;
@@ -230,8 +256,7 @@ public class GoalManager
                 break;
 
                 case LoadGoalsChoice:
-                    Console.WriteLine("Load Goals");
-                    Console.WriteLine("In progress");
+                    LoadGoals(); 
                 break;
 
                 case RecordEventChoice:
